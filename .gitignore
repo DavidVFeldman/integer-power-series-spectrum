@@ -1,0 +1,15 @@
+# Lake build artifacts
+/.lake/
+/lake-packages/
+*.olean
+*.ilean
+*.c
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.bbl
+*.blg

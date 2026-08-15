@@ -1,0 +1,809 @@
+\documentclass[12pt]{amsart}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zi}{\mathbb{Z}[i]}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\OD}{\mathcal{O}(\D)}
+\newcommand{\mR}{\mathcal{R}}
+\newcommand{\mRR}{\mathcal{R}_{\mathbb{R}}}
+
+\title{The Prime Spectrum of Rings of\\Integer-Coefficient Power Series on the Disk}
+\author{Jon Bannon}\author{David Feldman}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is a sequel to \cite{PaperI}, where it is shown that a discrete
+effective divisor on the open unit disk $\D$ is the zero divisor of a
+holomorphic function with integer Taylor coefficients if and only if it
+is invariant under complex conjugation.  Building on that realization
+theorem and on the unit characterization established there, we study the
+prime and maximal spectra of the rings $\mR = \Zi[[z]] \cap \OD$ and
+$\mRR = \Z[[z]] \cap \OD$.  We give a trichotomy for maximal ideals and
+classify the prime ideals containing $z$ or a nonzero integer: they are
+$(z)$, the maximal ideals $(z,p)$, and the non-maximal primes $(p)$, for
+$p$ a rational prime.  The remaining primes include, besides the class $\mathfrak{P}_1$
+of primes containing a unit-constant-term element, a family of $p$-adic
+evaluation primes $Q_p$ with $\mRR/Q_p \cong \Z_p$; in particular
+$\mathrm{Spec}(\mRR) \setminus \mathfrak{P}_1$ strictly contains
+$\{(0),(z)\} \cup \{(p) : p \text{ prime}\} \cup \{(z,p) : p
+\text{ prime}\}$.  We
+attach to each element of $\mathfrak{P}_1$ an analytic invariant
+satisfying a partition property, and construct an injection from
+ultrafilters on real-supported admissible divisors into $\mathfrak{P}_1$
+by an ultraproduct device.  We prove the point-evaluation ideals $P_a$
+are prime for all $a \in \D$ and maximal for real nonzero $a$, and deduce
+a conditional B\'ezout property for functions with disjoint divisors and
+coprime constant terms.  All results recalled from \cite{PaperI} are used
+only as cited; no proof of that paper is reproduced here.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+The companion paper \cite{PaperI} proves that the only arithmetic
+obstruction to prescribing the zero divisor of an integer-coefficient
+holomorphic function on the unit disk $\D = \{z \in \C : \abs{z} < 1\}$
+is conjugation invariance, and derives a first layer of ring-theoretic
+consequences for the coefficient-restricted algebras
+\[
+  \mR = \Zi[[z]] \cap \OD, \qquad \mRR = \Z[[z]] \cap \OD,
+\]
+where $\Zi = \Z[i]$.  Those foundational results---the realization
+theorems, the characterization of units, the factorization of
+$\OD$-elements up to units, and the injectivity of the contraction
+$\mathrm{MaxSpec}(\OD) \to \mathrm{Spec}(\mR)$---have been formally
+verified.  We take them as given (Section~\ref{sec:recall}) and develop
+from them a systematic description of the prime and maximal spectra.
+
+The present paper contains no overlap with \cite{PaperI}: the
+construction of realizing functions, its convergence analysis, and the
+elementary-factor machinery live entirely in the companion paper and are
+invoked here only through the statements collected in
+Section~\ref{sec:recall}.  Everything from Section~\ref{sec:trichotomy}
+onward is new.
+
+\medskip\noindent\textbf{Results.}
+After recalling the needed facts, we establish a trichotomy for maximal
+ideals of $\mRR$ and show one of the three types cannot occur
+(Section~\ref{sec:trichotomy}).  We then introduce the three ambient
+classes of prime ideals $\mathfrak{P} \supseteq \mathfrak{P}_1 \supseteq
+\mathfrak{M} \cap \mathfrak{P}_1$ and classify the primes containing $z$
+or a nonzero integer: they are $(z)$ and the $(z,p)$ (the latter maximal)
+when $z \in P$, and the $(p)$ (prime, non-maximal) when $z \notin P$ and
+$P \cap \Z \neq 0$ (Section~\ref{sec:outside}).  The residual class---%
+$z \notin P$ and $P \cap \Z = 0$---contains $(0)$ and all of
+$\mathfrak{P}_1$, but not only these: for each rational prime $p$,
+$p$-adic evaluation at $-p$ yields a surjection $\mRR \twoheadrightarrow
+\Z_p$ whose kernel $Q_p$ is a prime lying outside $\mathfrak{P}_1$ and
+distinct from every ideal above (Section~\ref{sec:outside}).  For primes
+\emph{inside} $\mathfrak{P}_1$ we attach an analytic invariant
+$\mathcal{Z}(P)$---the family of zero divisors of the unit-constant-term
+elements of $P$---which satisfies a partition property; its completeness
+is posed as a conjecture (Section~\ref{sec:invariant}).  We realize every
+ultrafilter on a real-supported admissible divisor as the trace of a
+prime ideal built by an ultraproduct construction
+(Section~\ref{sec:ultra}).  Finally we treat the point-evaluation ideals
+$P_a = \ker(\mathrm{ev}_a)$, proving primeness for all $a \in \D$ and
+maximality for real nonzero $a$ (and for all nonzero $a$ in the Gaussian
+ring $\mR$), and deduce a conditional B\'ezout theorem for functions with
+disjoint divisors and coprime constant terms
+(Sections~\ref{sec:pointeval}--\ref{sec:bezout}).
+
+\medskip\noindent\textbf{Formalization.}
+The trichotomy of maximal ideals, the classification of primes containing
+$z$ or a nonzero integer, the unit-quotient lemma, part~(i) of
+Proposition~\ref{prop:interesting} (in the strengthened form of
+Remark~\ref{rem:onlymax}), the point-evaluation results, the
+$p$-adic evaluation primes of Proposition~\ref{prop:padic} (including the
+surjectivity of $\psi_p$ and the isomorphism $\mRR/Q_p \cong \Z_p$), the
+partition property of Proposition~\ref{prop:prime1ultrafilter}, the
+ultraproduct construction of Proposition~\ref{prop:ultraproductprime}
+(in the real-supported form stated here), and the conditional B\'ezout
+theorem (including the necessity of its coprimality hypothesis) have been
+formally verified in Lean~4, building on the verified development of
+\cite{PaperI}.  Every numbered theorem, proposition, lemma, and corollary
+of this paper has been so verified; the conjecture and the questions of
+Section~\ref{sec:open} have not.
+
+Throughout, the arguments are stated for $\mRR$ for concreteness; they
+apply verbatim to $\mR$ with $\Zi$ in place of $\Z$ unless noted.  We
+write $\mathfrak{n}_0 = \{g : g(0) = 0\}$ for the augmentation ideal, and
+$[z^n]f$ for the coefficient of $z^n$ in $f$.
+
+\section{Notation and results recalled from \cite{PaperI}}
+\label{sec:recall}
+
+We recall the statements used below.  Proofs are in \cite{PaperI}; the
+locators are placeholders to be synchronized with the final numbering of
+the companion paper.
+
+\begin{theorem}[Integer realization; {\cite[Thm.~1.1]{PaperI}}]
+\label{thm:main}
+An effective divisor $D$ on $\D$ is the zero divisor of a holomorphic
+function on $\D$ with Taylor coefficients in $\Z$ if and only if $D$ is
+invariant under complex conjugation.
+\end{theorem}
+
+\begin{theorem}[Gaussian-integer realization; {\cite[Thm.~1.2]{PaperI}}]
+\label{thm:Zi}
+Every effective divisor on $\D$ is the zero divisor of a holomorphic
+function on $\D$ with Taylor coefficients in $\Zi$.
+\end{theorem}
+
+By an \emph{admissible divisor} on $\D$ we mean an effective divisor
+(a multiplicity function on $\D$ with values in the nonnegative
+integers) whose support meets every compact subset of $\D$ in a finite
+set; the admissible divisors are exactly the zero divisors of functions
+holomorphic on $\D$ and not identically zero.  In particular
+(Theorem~\ref{thm:main}), every conjugation-invariant admissible
+divisor in $\D$ assigning multiplicity $0$ to the origin is
+the zero set, with multiplicity, of some element of $\mRR$ with constant
+term $1$; this is the only input to the partition and ultraproduct
+arguments below.  Both restrictions are necessary: the coefficients being
+real forces the zero set to be conjugation-invariant, and constant term
+$1$ forces nonvanishing at $0$.
+
+\begin{proposition}[Units; {\cite[Prop.~4.1]{PaperI}}]
+\label{prop:units}
+An element $f \in \mR$ is a unit if and only if $f(0) \in \Zi^\times =
+\{\pm 1, \pm i\}$ and $f$ is nowhere vanishing on $\D$.  The analogous
+statement holds for $\mRR$, with $\Zi^\times$ replaced by $\Z^\times =
+\{\pm 1\}$.
+\end{proposition}
+
+We also use, from \cite{PaperI}, that every $f \in \OD$ factors as $f =
+g\,u$ with $g \in \mR$ and $u \in \OD^\times$, that consequently the
+contraction $\phi \colon \mathrm{MaxSpec}(\OD) \to \mathrm{Spec}(\mR)$,
+$\mathfrak{m} \mapsto \mathfrak{m} \cap \mR$, is injective, and that
+$\mR/\mathfrak{n}_0 \cong \Zi$ (respectively $\mRR/\mathfrak{n}_0 \cong
+\Z$).  These frame the picture but are not needed in the proofs that
+follow.
+
+\section{A trichotomy for maximal ideals}
+\label{sec:trichotomy}
+
+\begin{proposition}[Trichotomy of maximal ideals]
+\label{prop:trichotomy}
+Every maximal ideal $M \subset \mRR$ falls into exactly one of the
+following types:
+\begin{enumerate}
+\item[(i)] $z \in M$,
+\item[(ii)] $n \in M$ for some integer $n$ with $\abs{n} > 1$, but
+  $z \notin M$,
+\item[(iii)] neither $z$ nor any integer constant belongs to $M$.
+\end{enumerate}
+Moreover, type~\emph{(ii)} cannot occur: no maximal ideal of $\mRR$
+contains an integer but not $z$.
+\end{proposition}
+
+\begin{proof}
+The three types are mutually exclusive and exhaustive by definition.
+It remains to show type~(ii) cannot occur.  Suppose $n \in M$ with
+$\abs{n} > 1$.  Factoring $\abs{n}$ into rational primes inside $\mRR$
+and using primeness of $M$, some prime factor $p$ lies in $M$.  Thus
+$(p) \subseteq M$, and $M$ corresponds to a maximal ideal $\bar M$ of
+$\mRR/(p) \cong \mathbb{F}_p[[z]]$ (the coefficientwise reduction is a
+surjection with kernel $(p)$; surjectivity holds because any $\sum \bar
+a_n z^n$ lifts to $\sum a_n z^n$ with $a_n \in \{0,\ldots,p-1\}$, of
+radius of convergence $\geq 1$).  The ring $\mathbb{F}_p[[z]]$ is local
+with maximal ideal $(\bar z)$, so $\bar M = (\bar z) \ni \bar z$, and
+since $(p) \subseteq M$ this pulls back to $z \in M$.  Hence a maximal
+ideal containing an integer of modulus exceeding $1$ contains $z$, and
+type~(ii) is empty.
+\end{proof}
+
+\begin{definition}
+A maximal ideal of type~(iii) is called a \emph{type~(iii) maximal
+ideal}.
+\end{definition}
+
+We fix, once and for all, three classes of prime ideals of $\mRR$,
+using fraktur notation:
+\begin{itemize}
+\item $\mathfrak{P} = \mathrm{Spec}(\mRR)$: all prime ideals of $\mRR$.
+\item $\mathfrak{P}_1$: prime ideals $P$ containing at least one element
+  of the form $1 + zF$ (i.e.\ with unit constant term).
+\item $\mathfrak{M}$: maximal ideals of $\mRR$.
+\end{itemize}
+These satisfy $\mathfrak{M} \cap \mathfrak{P}_1 \subseteq \mathfrak{P}_1
+\subseteq \mathfrak{P}$.  Every type~(iii) maximal ideal lies in
+$\mathfrak{P}_1$ by Proposition~\ref{prop:interesting}(i) below;
+type~(i) maximal ideals (containing $z$) do not contain
+unit-constant-term elements, since if $z \in P$ and $1 + zF \in P$ then
+$1 = (1 + zF) - z \cdot F \in P$, contradicting $P$ proper.  Whether
+every element of $\mathfrak{P}_1$ is maximal is open
+(Section~\ref{sec:open}).
+
+\section{Prime ideals outside $\mathfrak{P}_1$}
+\label{sec:outside}
+
+\begin{proposition}[Primes containing $z$ or a nonzero integer]
+\label{prop:primes_outside}
+Every prime ideal $P$ of $\mRR$ falls into exactly one of the following
+classes:
+\begin{enumerate}
+\item[(a)] $z \in P$, and then $P = (z)$ or $P = (z, p)$ for a rational
+  prime $p$.  The ideal $(z)$ is prime and not maximal; the ideals
+  $(z,p)$ are maximal, and are exactly the type~(i) maximal ideals.
+\item[(b)] $z \notin P$ and $P \cap \Z \neq 0$, and then $P = (p)$ for a
+  rational prime $p$.  These are prime but not maximal.
+\item[(c)] $z \notin P$ and $P \cap \Z = 0$.
+\end{enumerate}
+Class~(c) contains $(0)$ and every member of $\mathfrak{P}_1$.  Indeed,
+let the prime $P$ contain $1 + zF$.  If $z \in P$ then $1 = (1+zF) -
+zF \in P$, impossible.  If a nonzero integer lies in $P$, then some
+rational prime $p \in P$ (factor and use primeness), so $(p) \subseteq
+P$ and the image of $P$ in $\mRR/(p) \cong \mathbb{F}_p[[z]]$ is a
+proper ideal containing the image of $1 + zF$; but that image has
+constant term $\bar 1 \neq 0$ and is therefore a unit of the local ring
+$\mathbb{F}_p[[z]]$, a contradiction.  Class~(c) is strictly larger than
+$\{(0)\} \cup \mathfrak{P}_1$: see Proposition~\ref{prop:padic}.
+\end{proposition}
+
+\begin{proof}
+The three classes are mutually exclusive and exhaustive by definition.
+
+\medskip\noindent\emph{Class (a): $z \in P$.}  Since $(z) \subseteq P$,
+the image of $P$ in $\mRR/(z) \cong \Z$ (the isomorphism is evaluation at
+$0$, whose kernel is exactly $(z)$: an element with constant term $0$ is
+divisible by $z$ in $\mRR$) is a prime ideal of $\Z$, hence $(0)$ or
+$(p)$ for a rational prime $p$.  Pulling back along the quotient, $P =
+(z)$ or $P = (z,p)$.  Since $\mRR/(z,p) \cong \Z/(p) = \mathbb{F}_p$ is a
+field, $(z,p)$ is maximal; since $\mRR/(z) \cong \Z$ is not a field,
+$(z)$ is not.  A type~(i) maximal ideal contains $z$, hence is $(z,p)$
+by the above; conversely each $(z,p)$ is maximal and contains $z$.
+
+\medskip\noindent\emph{Class (b): $z \notin P$, $P \cap \Z \neq 0$.}
+Fix a nonzero $n \in P \cap \Z$.  Factoring $\abs{n}$ into rational
+primes inside $\mRR$ and using primeness of $P$ (the unit $\pm 1$ cannot
+lie in $P$), some rational prime $p$ lies in $P$.  Now $(p) \subseteq
+P$, so the image $\bar P$ of $P$ in $\mRR/(p) \cong \mathbb{F}_p[[z]]$
+(the reduction of Proposition~\ref{prop:trichotomy}) is a legitimate
+prime ideal---the kernel of the quotient is contained in $P$, which is
+what the argument requires.  The prime ideals of the discrete valuation
+ring $\mathbb{F}_p[[z]]$ are $(0)$ and $(\bar z)$; since $z \notin P$ we
+have $\bar z \notin \bar P$, so $\bar P = (0)$, i.e.\ $P \subseteq (p)$.
+With $(p) \subseteq P$ this gives $P = (p)$.  Finally
+$\mathbb{F}_p[[z]]$ is not a field, so $(p)$ is not maximal.
+\end{proof}
+
+Class~(c) contains, besides $(0)$ and the members of $\mathfrak{P}_1$
+studied below, the kernels of $p$-adic evaluations.
+
+\begin{proposition}[$p$-adic evaluation primes]
+\label{prop:padic}
+Let $p$ be a rational prime and let $\Z_p$ denote the $p$-adic integers.
+The assignment
+\[
+  \psi_p \colon \mRR \longrightarrow \Z_p, \qquad
+  \psi_p\Big(\sum_{n \geq 0} a_n z^n\Big) = \sum_{n \geq 0} a_n (-p)^n
+\]
+(convergent $p$-adically, since $\abs{a_n(-p)^n}_p \leq p^{-n} \to 0$) is
+a surjective ring homomorphism.  Its kernel $Q_p = \ker \psi_p$
+satisfies:
+\begin{enumerate}
+\item[(i)] $Q_p$ is prime and not maximal, with $\mRR/Q_p \cong \Z_p$;
+\item[(ii)] $z + p \in Q_p$, so $Q_p \neq (0)$;
+\item[(iii)] $z \notin Q_p$ and $Q_p \cap \Z = 0$, so $Q_p$ lies in
+  class~\emph{(c)} of Proposition~\ref{prop:primes_outside};
+\item[(iv)] $Q_p \notin \mathfrak{P}_1$: no element of $Q_p$ has constant
+  term $\pm 1$.  Indeed every $f \in Q_p$ has $p \mid f(0)$.
+\end{enumerate}
+In particular $\mathfrak{P} \setminus \mathfrak{P}_1$ strictly contains
+$\{(0), (z)\} \cup \{(p)\} \cup \{(z,p)\}$.
+\end{proposition}
+
+\begin{proof}
+The series defining $\psi_p$ converges in the complete nonarchimedean
+ring $\Z_p$ because its terms tend to $0$.  Additivity is clear;
+multiplicativity is the Cauchy-product identity, valid since both factor
+series converge absolutely in the nonarchimedean sense.  Well-definedness
+rests on the fact that an element of $\mRR$ determines its Taylor
+coefficients.
+
+\emph{Surjectivity.}  Given $w \in \Z_p$, define digits $\varepsilon_n
+\in \{0, \ldots, p-1\}$ and remainders $w_n \in \Z_p$ by $w_0 = w$,
+$\varepsilon_n \equiv w_n \pmod{p}$, and $w_{n+1} = (w_n -
+\varepsilon_n)/(-p)$.  By construction $w = \sum_{n < N} \varepsilon_n
+(-p)^n + (-p)^N w_N$ for every $N$, and $\abs{(-p)^N w_N}_p \leq p^{-N}
+\to 0$, so $w = \sum_n \varepsilon_n (-p)^n$.  The digit sequence is
+bounded, so $f = \sum_n \varepsilon_n z^n$ has radius of convergence at
+least $1$ and integer coefficients, i.e.\ $f \in \mRR$, and $\psi_p(f) =
+w$.
+
+(i) $\mRR / Q_p \cong \Z_p$ by surjectivity; $\Z_p$ is an integral
+domain, so $Q_p$ is prime, and $\Z_p$ is not a field, so $Q_p$ is not
+maximal.  (ii) $\psi_p(z + p) = -p + p = 0$.  (iii) $\psi_p(z) = -p \neq
+0$ and $\psi_p(n) = n \neq 0$ for nonzero $n \in \Z$.  (iv) For $f =
+\sum a_n z^n$, $\psi_p(f) \equiv a_0 \pmod{p}$, since every term with
+$n \geq 1$ lies in $p\Z_p$.  Hence $f \in Q_p$ forces $p \mid a_0$; in
+particular $a_0 \neq \pm 1$.
+\end{proof}
+
+\begin{remark}
+\label{rem:padic}
+The primes $Q_p$ are $p$-adic analogues of the point-evaluation ideals
+$P_a$ of Section~\ref{sec:pointeval}: where $P_a$ is the kernel of
+archimedean evaluation at a point of $\D$, $Q_p$ is the kernel of
+$p$-adic evaluation at $-p$, a point of $p\Z_p$.  More generally, any
+$\alpha \in p\Z_p$ yields a ring homomorphism $\mRR \to \Z_p$, $f
+\mapsto \sum a_n \alpha^n$, whose kernel is prime whenever it is proper;
+for $\alpha = -p$ the base-$(-p)$ digit expansion yields surjectivity and
+so identifies the quotient.  The primes $Q_p$ rule out any classification
+of $\mathfrak{P} \setminus \mathfrak{P}_1$ by the ideals $(p)$ and
+$(z,p)$ alone.  An argument for such a classification would pass to the
+image of $P$ in $\mathbb{F}_p[[z]]$; that step is valid only when the
+kernel $(p)$ of the reduction is contained in $P$, which is available in
+the proof of Proposition~\ref{prop:primes_outside}(b) but not in
+general---and $Q_p$, whose elements all have constant term divisible by
+$p$ while $p \notin Q_p$, witnesses the failure.  A description of
+class~\emph{(c)} in full remains open (Section~\ref{sec:open}).
+\end{remark}
+
+\section{Structure of primes in $\mathfrak{P}_1$}
+\label{sec:invariant}
+
+We first record a consequence of the unit characterization from
+\cite{PaperI}.
+
+\begin{lemma}[Unit quotient lemma]
+\label{lem:unitquotient}
+If $f_1, f_2 \in \mRR$ both have constant term $1$ and the same zero set
+$Z(f_1) = Z(f_2)$ with multiplicities, then $f_1/f_2 \in \mRR^\times$.
+\end{lemma}
+
+\begin{proof}
+Write $f_2 = \sum_{n \geq 0} a_n z^n$ with $a_0 = 1$ and $a_n \in \Z$.
+The ratio $h = f_1/f_2$ extends holomorphically to $\D$ (the zeros of
+$f_2$ are exactly those of $f_1$ with equal multiplicities, so $h$ has
+no poles), is nowhere vanishing (identical zero sets), and $h(0) = 1$.
+Writing $h = \sum_{n \geq 0} b_n z^n$ and comparing coefficients in $f_1
+= f_2 \cdot h$ gives $b_0 = 1$ and
+\[
+  b_n = [z^n]f_1 - \sum_{k=1}^n a_k b_{n-k}, \quad n \geq 1.
+\]
+Since $[z^n]f_1 \in \Z$, $a_k \in \Z$, and $b_0 \in \Z$, induction gives
+$b_n \in \Z$ for all $n$.  Because $h$ is nowhere vanishing on $\D$, $1/h
+\in \OD$, so $h \in \mRR$.  Being nowhere vanishing with $h(0) = 1 \in
+\Z^\times$, $h$ is a unit of $\mRR$ by Proposition~\ref{prop:units}.
+\end{proof}
+
+\begin{proposition}[Structure of type~(iii) maximal ideals]
+\label{prop:interesting}
+Let $M$ be a type~(iii) maximal ideal of $\mRR$.  Then:
+\begin{enumerate}
+\item[(i)] $M$ contains an element of the form $1 + zF$.  Indeed the set
+  $I = \{g(0) : g \in M\} \subset \Z$ is an ideal, and $I = \Z$.
+\item[(ii)] An element $f = 1 + zF \in \mRR$ is a unit of $\mRR$ if and
+  only if it is nowhere vanishing on $\D$; this is the $\mRR$ case of
+  Proposition~\ref{prop:units}, the constant term $1 \in \Z^\times$
+  being automatic.  In particular, elements of $M$ of the form $1 + zF$
+  are non-units, hence vanish somewhere in $\D$.
+\item[(iii)] Two elements of $\mRR$ of the form $1 + zF$ with the same
+  zero set differ by a unit of $\mRR$ (Lemma~\ref{lem:unitquotient}).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The set $I = \{g(0) : g \in M\}$ is an ideal of $\Z$ (closed under
+addition since $M$ is an additive subgroup, and under integer
+multiplication since $\Z \subset \mRR$ and $M$ is an ideal).  Suppose $I
+\neq \Z$.
+
+If $I = (0)$: every element of $M$ has zero constant term, i.e.\ $M
+\subseteq \ker(\mathrm{ev}_0) = (z)$ (an element with constant term $0$
+is divisible by $z$ in $\mRR$).  Since $(z)$ is a proper ideal and $M$ is
+maximal, $M = (z) \ni z$, contradicting type~(iii).
+
+Otherwise $I \subseteq (p)$ for some rational prime $p$ (take any prime
+divisor of a generator of $I$).  Then $M \subseteq K_p := \{f \in \mRR :
+p \mid f(0)\}$.  But $K_p = (z, p)$: the inclusion $\supseteq$ is clear,
+and if $p \mid f(0)$ then $f = z \cdot \tfrac{f - f(0)}{z} + p \cdot
+\tfrac{f(0)}{p}$ exhibits $f \in (z,p)$, the first quotient lying in
+$\mRR$ by divisibility of constant-term-zero elements by $z$.  Since
+$K_p$ is proper ($1 \notin K_p$) and $M$ is maximal, $M = K_p = (z,p)
+\ni z$, again contradicting type~(iii).
+
+Hence $I = \Z$, and some element of $M$ has constant term $1$.
+
+(ii) This is Proposition~\ref{prop:units} for $\mRR$ applied to $f = 1 +
+zF$ (whose constant term is the unit $1$): $f$ is a unit iff it is
+nowhere vanishing.  Elements of $M$ are non-units, so those of the form
+$1 + zF$ must vanish somewhere in $\D$.
+
+(iii) Immediate from Lemma~\ref{lem:unitquotient}.
+\end{proof}
+
+\begin{remark}
+\label{rem:onlymax}
+The proof of part~(i) uses only that $M$ is maximal and $z \notin M$; the
+type~(iii) hypothesis that $M$ contains no nonzero integer is not needed
+(and indeed follows from these two by
+Proposition~\ref{prop:trichotomy}).  So every maximal ideal not
+containing $z$ contains an element of constant term $1$; equivalently,
+$\mathfrak{M} \cap \mathfrak{P}_1$ consists exactly of the maximal ideals
+avoiding $z$.
+\end{remark}
+
+\begin{remark}
+\label{rem:nogeneration}
+Part~(i) does not imply that the elements of the form $1 + zF$ lying in
+$M$ generate $M$ as an ideal.  It supplies \emph{some} element of $M$
+with constant term $1$, not that every $z$-reduced element of $M$ has
+unit constant term: removing the leading power of $z$ from $f \in M$
+leaves an element of $M$ whose constant term can be any value in $I$.
+Whether the unit-constant-term elements of $M$ generate $M$ is open, and
+the question propagates: the completeness of the invariant $\mathcal{Z}$
+below is stated as a conjecture because the natural proof requires this
+generation property.
+\end{remark}
+
+\begin{definition}
+For a type~(iii) maximal ideal $M$, define its \emph{analytic invariant}
+\[
+  \mathcal{Z}(M) = \{ Z(f) : f \in M,\; f = 1 + zF \text{ for some }
+  F \in \mRR \},
+\]
+where $Z(f) \subset \D$ is the zero set of $f$ counted with
+multiplicities.
+\end{definition}
+
+\begin{remark}
+\label{rem:Zunion}
+The family $\mathcal{Z}(M)$ is closed under finite unions: if $f, g \in
+M$ then $fg \in M$ and $Z(fg) = Z(f) \cup Z(g)$.  Each member of
+$\mathcal{Z}(M)$ is an admissible divisor which is conjugation-invariant
+(the coefficients of its realizing function are real) and assigns
+multiplicity $0$ to the origin (the constant term is $1$); by
+Theorem~\ref{thm:main}, every divisor with these properties is $Z(h)$
+for some $h \in \mRR$ with constant term $1$.
+\end{remark}
+
+The invariant extends to all of $\mathfrak{P}_1$.  For $P \in
+\mathfrak{P}_1$, define $\mathcal{Z}(P)$ by the same formula.
+
+\begin{conjecture}[Completeness of $\mathcal{Z}$]
+\label{prop:prime1invariant}
+For $P_1, P_2 \in \mathfrak{P}_1$: $P_1 = P_2 \iff \mathcal{Z}(P_1) =
+\mathcal{Z}(P_2)$.  In particular type~(iii) maximal ideals would be
+determined by their invariants.
+\end{conjecture}
+
+\begin{remark}
+If the unit-constant-term elements of $P$ generate $P$ for every $P \in
+\mathfrak{P}_1$ (the open generation property of
+Remark~\ref{rem:nogeneration}), the conjecture follows: given
+$\mathcal{Z}(P_1) = \mathcal{Z}(P_2)$, each unit-constant-term $f \in
+P_1$ admits a unit-constant-term $g \in P_2$ with $Z(g) = Z(f)$, whence
+$f = ug$ for a unit $u$ by Proposition~\ref{prop:interesting}(iii) and
+$f \in P_2$; generation then gives $P_1 \subseteq P_2$, and symmetry
+concludes.  The generation property itself resists the natural attack:
+stripping powers of $z$ and reducing constant terms against a fixed $1 +
+zG \in P$ produces, from $f \in P$, expressions $f = c \cdot g + z
+\cdot h$ with $h \in P$, and iterating yields an infinite descent rather
+than the finite $\mRR$-combination that ideal generation requires.
+\end{remark}
+
+\begin{proposition}[Partition property of $\mathcal{F}_Z(P)$]
+\label{prop:prime1ultrafilter}
+Let $P \in \mathfrak{P}_1$ and $f = 1 + zF \in P$ with $Z = Z(f)$.  Put
+\[
+  \mathcal{F}_Z(P) = \{ Z(h) : h \in P,\; h = 1 + zH,\; Z(h) \subseteq Z \}.
+\]
+For every partition $Z = Z_1 \sqcup Z_2$ into conjugation-invariant
+subdivisors, at least one of $Z_1, Z_2$ lies in $\mathcal{F}_Z(P)$.
+\end{proposition}
+
+\begin{proof}
+Note first that $Z = Z(f)$ is conjugation-invariant (the coefficients of
+$f$ are real) and assigns multiplicity $0$ to the origin ($f(0) = 1$),
+and these properties pass to the conjugation-invariant pieces $Z_1,
+Z_2$.  By Theorem~\ref{thm:main}, obtain $f_1, f_2 \in \mRR$ with
+constant term $1$ and $Z(f_i) = Z_i$.  Then $f_1 f_2$ has constant term
+$1$ and $Z(f_1 f_2) = Z_1 \cup Z_2 = Z = Z(f)$, so by
+Proposition~\ref{prop:interesting}(iii), $f_1 f_2 = u f$ for a unit $u$.
+As $f \in P$, $f_1 f_2 \in P$; primeness gives $f_1 \in P$ or $f_2 \in
+P$, i.e.\ $Z_1 \in \mathcal{F}_Z(P)$ or $Z_2 \in \mathcal{F}_Z(P)$.
+\end{proof}
+
+\begin{remark}
+The restriction to conjugation-invariant pieces is necessary for the
+proof, since only conjugation-invariant divisors are realized over $\Z$
+(Theorem~\ref{thm:main}).  When $|Z|
+\subseteq \R$ every subdivisor is conjugation-invariant and the property
+holds for arbitrary partitions.
+\end{remark}
+
+\begin{remark}
+The partition property is all that follows from primeness alone.  The
+full ultrafilter property---that \emph{exactly} one of $Z_1, Z_2$ lies in
+$\mathcal{F}_Z(P)$---requires that $P$ not contain elements with disjoint
+zero sets, which depends on maximality or further structural information
+about $P$.
+\end{remark}
+
+\section{Ultrafilters give prime ideals via ultraproducts}
+\label{sec:ultra}
+
+\begin{proposition}[Ultraproduct construction]
+\label{prop:ultraproductprime}
+Let $Z$ be an admissible divisor in $\D$ with $|Z| \subseteq \R
+\setminus \{0\}$, and let $\mathcal{U}$ be an ultrafilter on the
+underlying point set $|Z|$ (ignoring multiplicities).  For each $W
+\subseteq |Z|$, the set $W$ is a conjugation-invariant admissible
+divisor avoiding the origin, so Theorem~\ref{thm:main} supplies $f_W \in
+\mRR$ with constant term $1$ and $Z(f_W) = W$ as a set.  Define
+\[
+  \Phi_\mathcal{U} \colon \mRR \to \prod_{a \in Z} \C \Big/ \mathcal{U},
+  \qquad \Phi_\mathcal{U}(h) = [(h(a))_{a \in Z}]_\mathcal{U}.
+\]
+Then:
+\begin{enumerate}
+\item[(i)] $\Phi_\mathcal{U}$ is a ring homomorphism to a field.  Here
+  $\prod_{a \in Z} \C / \mathcal{U}$ is the ultraproduct of copies of
+  $\C$ along $\mathcal{U}$; since $\mathcal{U}$ is a proper ultrafilter
+  and each factor is a field, {\L}o\'s's theorem \cite{CK} implies the
+  ultraproduct is a field.
+\item[(ii)] $P_\mathcal{U} = \ker(\Phi_\mathcal{U}) \in \mathfrak{P}_1$:
+  it is prime (kernel of a map to a field) and contains $f_Z$, which has
+  constant term $1$.
+\item[(iii)] $\mathcal{F}_Z(P_\mathcal{U}) = \mathcal{U}$: for $h = 1 +
+  zH$ with $Z(h) \subseteq Z$, one has $h \in P_\mathcal{U}$ iff $\{a
+  \in Z : h(a) = 0\} = Z(h) \in \mathcal{U}$.
+\item[(iv)] The map $\mathcal{U} \mapsto P_\mathcal{U}$ is injective: if
+  $P_{\mathcal{U}_1} = P_{\mathcal{U}_2}$ then $\mathcal{U}_1 =
+  \mathcal{F}_Z(P_{\mathcal{U}_1}) = \mathcal{F}_Z(P_{\mathcal{U}_2}) =
+  \mathcal{U}_2$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The reduced product $\prod_{a \in Z}\C/\mathcal{U}$ is the
+ultraproduct of copies of $\C$ along the proper ultrafilter
+$\mathcal{U}$; by {\L}o\'s's theorem for the first-order theory of fields
+it is a field, and $\Phi_\mathcal{U}$ is a ring homomorphism by
+coordinatewise evaluation.  (No model theory is actually required here:
+a nonzero class is represented by a family nonvanishing on a member of
+$\mathcal{U}$, and inverting it there and setting it to $1$ elsewhere
+produces an inverse class.)  (ii) The kernel of a homomorphism to a
+field is prime; $f_Z \in P_\mathcal{U}$ since $Z \in \mathcal{U}$ (the
+whole index set belongs to every filter) and $f_Z$ vanishes on $Z$.
+(iii) For $h = 1 + zH$ with $Z(h) \subseteq Z$: by definition of the
+reduced product, $h \in P_\mathcal{U}$ iff $\{a \in Z : h(a) = 0\} \in
+\mathcal{U}$, and the restriction $Z(h) \subseteq Z$ makes that set
+equal $Z(h)$; conversely every $W \in \mathcal{U}$ arises as $Z(f_W)$
+with $f_W \in P_\mathcal{U}$ by the membership criterion just
+established.  (iv) Immediate from (iii).
+\end{proof}
+
+\begin{remark}
+The map $\mathcal{U} \mapsto P_\mathcal{U}$ from ultrafilters on
+real-supported admissible divisors into $\mathfrak{P}_1$ is injective by
+part~(iv).  Whether it is surjective---whether every element of
+$\mathfrak{P}_1$ arises as some $P_\mathcal{U}$---is open
+(Section~\ref{sec:open}).  The restriction $|Z| \subseteq \R$ enters
+only through the realizability of arbitrary subsets $W \subseteq |Z|$
+over $\Z$; for general $Z$ the same construction works verbatim provided
+$\mathcal{U}$ admits a base of conjugation-invariant sets, and works
+over the Gaussian ring $\mR$ with no restriction beyond $0 \notin |Z|$
+(Theorem~\ref{thm:Zi}).
+\end{remark}
+
+\section{Point-evaluation ideals}
+\label{sec:pointeval}
+
+For $a \in \D$ let $\mathrm{ev}_a \colon \mRR \to \C$, $f \mapsto f(a)$,
+and $P_a = \ker(\mathrm{ev}_a)$.
+
+\begin{proposition}[Primeness]
+\label{prop:pointeval_prime}
+For each $a \in \D$, the ideal $P_a$ is prime in $\mRR$.
+\end{proposition}
+
+\begin{proof}
+Since every $f \in \mRR$ is holomorphic on $\D$ and $a \in \D$,
+$\mathrm{ev}_a$ is a ring homomorphism, nonzero (the constant $1 \mapsto
+1$) with codomain the integral domain $\C$; hence its kernel $P_a$ is
+prime.
+\end{proof}
+
+\begin{proposition}[Maximality for real points]
+\label{prop:pointeval_max_real}
+For each $a \in \R \cap \D$, $P_a$ is a maximal ideal of $\mRR$ with
+$\mRR/P_a \cong \R$.
+\end{proposition}
+
+\begin{proof}
+Since all coefficients are real integers, $\mathrm{ev}_a(\mRR) \subseteq
+\R$ for $a \in \R$.  The case $a = 0$ is excluded ($P_0 =
+\mathfrak{n}_0$, with $\mRR/P_0 \cong \Z$ not a field; indeed $z \in
+P_0$, so $P_0$ is type~(i)).  For $a \in (-1,1) \setminus \{0\}$ and any
+$w \in \R$, define remainders $r_n = w - \sum_{k=0}^n c_k a^k$ by $r_{-1}
+= w$ and, at step $n$, $c_n \in \Z$ the nearest integer to
+$r_{n-1}/a^n$, so $r_n = r_{n-1} - c_n a^n$ and $\abs{r_n} \leq
+\tfrac12\abs{a}^n$.
+
+The bound $\abs{a} < 1$ keeps $\{c_n\}$ bounded: for $n \geq 1$,
+$\abs{r_{n-1}} \leq \tfrac12\abs{a}^{n-1}$, so $\abs{r_{n-1}/a^n} \leq
+\tfrac{1}{2\abs{a}}$ and $\abs{c_n} \leq \tfrac{1}{2\abs{a}} + \tfrac12$,
+a constant independent of $n$.  Hence $\sup_n \abs{c_n} < \infty$, so
+$\limsup \abs{c_n}^{1/n} = 1$ and $f = \sum_{n \geq 0} c_n z^n \in \mRR$.
+Since $\abs{r_N} \leq \tfrac12\abs{a}^N \to 0$, the partial sums
+$\sum_{k=0}^N c_k a^k = w - r_N \to w$, so $f(a) = w$.  Thus
+$\mathrm{ev}_a \colon \mRR \twoheadrightarrow \R$ is surjective, $\mRR/P_a
+\cong \R$ is a field, and $P_a$ is maximal.
+\end{proof}
+
+\begin{proposition}[Maximality in $\mR$]
+\label{prop:pointeval_max_gaussian}
+For each nonzero $a \in \D$, $P_a = \ker(\mathrm{ev}_a)$ is a maximal
+ideal of $\mR = \Zi[[z]] \cap \OD$, with $\mR/P_a \cong \C$.
+\end{proposition}
+
+\begin{proof}
+The case $a = 0$ is excluded: $P_0 = \mathfrak{n}_0$ with
+$\mR/P_0 \cong \Zi$, not a field.  For $a \neq 0$, the same bounded radix
+expansion, with $c_n \in \Zi$ chosen nearest to $r_{n-1}/a^n$, gives
+$\abs{r_n} \leq \tfrac{\sqrt2}{2}\abs{a}^n$ and $\abs{c_n} \leq
+\tfrac{\sqrt2}{2\abs{a}} + \tfrac{\sqrt2}{2}$, independent of $n$; so $f
+= \sum c_n z^n \in \mR$ with $f(a) = w$ for any $w \in \C$.  Hence
+$\mR/P_a \cong \C$ and $P_a$ is maximal.
+\end{proof}
+
+\begin{remark}
+Whether $P_a$ is maximal in $\mRR$ for $a \in \D \setminus \R$ remains
+open: $\mathrm{ev}_a(\mRR)$ is a subring of $\C$ containing $\Z[a]$, but
+surjectivity onto $\C$ with only integer (not Gaussian-integer)
+coefficients is an arithmetic question about $a$.
+\end{remark}
+
+\section{A conditional B\'ezout property}
+\label{sec:bezout}
+
+\begin{theorem}[Conditional B\'ezout property]
+\label{thm:bezout}
+Let $f, g \in \mRR$ have disjoint zero sets in $\D$ and coprime constant
+terms, $\gcd(f(0), g(0)) = 1$.  Then $(f,g)$ is not contained in any
+type~(i) maximal ideal, nor in any point-evaluation ideal $P_a$ with $a
+\in \D$.  Consequently, if every type~(iii) maximal ideal is a
+point-evaluation ideal $P_a$ for some $a \in \D$, then $(f,g) = \mRR$.
+\end{theorem}
+
+\begin{proof}
+Suppose $(f,g) \subseteq M$ for a maximal ideal $M$.  By
+Proposition~\ref{prop:trichotomy}, $M$ is type~(i) or type~(iii).
+
+\emph{Type~(i):} by Proposition~\ref{prop:primes_outside}(a), $M =
+(z,p)$ for a rational prime $p$.  An element $zA + pB \in (z,p)$ has
+constant term $p \cdot B(0)$, so membership of $f$ and $g$ in $M$ forces
+$p \mid f(0)$ and $p \mid g(0)$, contradicting $\gcd(f(0), g(0)) = 1$.
+
+\emph{Type~(iii), $M = P_a$ with $a \in \D$:} then $f(a) = g(a) = 0$, so
+$a \in Z(f) \cap Z(g)$, contradicting disjointness of the zero sets.
+
+If every type~(iii) maximal ideal is such a $P_a$, then $(f,g)$ lies in
+no maximal ideal, hence $(f,g) = \mRR$.
+\end{proof}
+
+\begin{remark}[Sharpness]
+\label{rem:bezoutsharp}
+The coprimality hypothesis cannot be dropped: for any rational prime
+$p$, the pair $f = g = p$ has empty (hence disjoint) zero sets in $\D$,
+yet $(f, g) = (p) \subseteq (z,p)$ is proper.  The same pair shows that
+membership of $f$ in a type~(i) maximal ideal does not force $f(0) = 0$:
+only divisibility of $f(0)$ by $p$ follows.
+\end{remark}
+
+\begin{remark}
+The conclusion is non-constructive even conditionally: Zorn's lemma
+produces the maximal ideal and no explicit cofactors are exhibited.
+Whether every type~(iii) maximal ideal is a point-evaluation ideal is the
+key open question; see Section~\ref{sec:open}.
+\end{remark}
+
+\begin{remark}[Partial structure of $\mathrm{Spec}(\mRR)$]
+\label{rem:spec}
+Assembling the above: the primes containing $z$ are $(z)$ and the
+maximal $(z,p)$; the primes containing a nonzero integer but not $z$ are
+the non-maximal $(p)$ (Proposition~\ref{prop:primes_outside}).  The
+remaining primes contain neither, and include $(0)$; the $p$-adic
+evaluation kernels $Q_p \cong \ker(\mRR \twoheadrightarrow \Z_p)$, which
+lie outside $\mathfrak{P}_1$ (Proposition~\ref{prop:padic}); and, inside
+$\mathfrak{P}_1$, the point-evaluation ideals $P_a$---maximal for
+nonzero $a \in \R \cap \D$
+(Proposition~\ref{prop:pointeval_max_real}), prime for all $a \in \D$
+(Proposition~\ref{prop:pointeval_prime})---and the kernels
+$P_\mathcal{U}$ of ultraproduct maps, with $\mathcal{F}_Z(P_\mathcal{U})
+= \mathcal{U}$ (Proposition~\ref{prop:ultraproductprime}).  Whether every
+type~(iii) maximal ideal is a $P_a$, whether $P_a$ is maximal for
+non-real $a$, and whether every element of $\mathfrak{P}_1$ is maximal
+are open.
+\end{remark}
+
+\section{Further Questions}
+\label{sec:open}
+
+\begin{itemize}
+\item \textbf{Classification of type~(iii) maximal ideals.}  The
+  point-evaluation ideals $P_a$ ($a \in \D$) are type~(iii) maximal
+  ideals.  Whether every type~(iii) maximal ideal is of this
+  form---equivalently, whether $\mathfrak{M} \cap \mathfrak{P}_1$
+  consists exactly of the $P_a$---is the central open question.  A
+  positive answer yields the full B\'ezout property
+  (Theorem~\ref{thm:bezout}) unconditionally.
+
+\item \textbf{The generation property.}  Is every $P \in \mathfrak{P}_1$
+  generated, as an ideal, by its elements of the form $1 + zF$
+  (Remark~\ref{rem:nogeneration})?  A positive answer proves
+  Conjecture~\ref{prop:prime1invariant}, the completeness of the
+  invariant $\mathcal{Z}$.
+
+\item \textbf{Structure of class (c).}  Classify the primes containing
+  neither $z$ nor a nonzero integer
+  (Proposition~\ref{prop:primes_outside}(c)).  Besides $(0)$ and
+  $\mathfrak{P}_1$, the class contains the $p$-adic evaluation primes
+  $Q_p$ (Proposition~\ref{prop:padic}) and, more generally, kernels of
+  evaluations $f \mapsto \sum a_n \alpha^n$ at $\alpha \in p\Z_p$.  Do
+  archimedean and $p$-adic evaluations (and their ultraproducts)
+  account for all of class~(c)?  Is $Q_p$ principal---indeed, is $Q_p =
+  (z + p)$?
+
+\item \textbf{Surjectivity of the ultraproduct map.}  The injection
+  $\mathcal{U} \mapsto P_\mathcal{U}$
+  (Proposition~\ref{prop:ultraproductprime}) parametrizes a family of
+  primes in $\mathfrak{P}_1$ by ultrafilters on real-supported
+  admissible divisors.  Whether it is surjective onto $\mathfrak{P}_1$,
+  and whether the $P_\mathcal{U}$ are maximal, is open.
+
+\item \textbf{Maximality inside $\mathfrak{P}_1$.}  Is every element of
+  $\mathfrak{P}_1$ maximal?  Is $P_a$ maximal in $\mRR$ for non-real $a
+  \in \D$?
+
+\item \textbf{Surjectivity of $\phi$.}  Whether every maximal ideal of
+  $\mR$ not containing $\mathfrak{n}_0$ arises by contraction from $\OD$
+  is open; this would require $\mathfrak{n} \cdot \OD$ proper for every
+  such maximal $\mathfrak{n} \subset \mR$.  (The contraction $\phi$ and
+  its injectivity are from \cite{PaperI}.)
+
+\item \textbf{Finer unit structure.}  Proposition~\ref{prop:units}
+  characterizes units; the finer structure of $\mR^\times$ and
+  $\mRR^\times$ is discussed in \cite{PaperI} and not revisited here.
+\end{itemize}
+
+\begin{thebibliography}{9}
+
+\bibitem{PaperI}
+J.~Bannon and D.~Feldman,
+\textit{Integer Coefficients Power Series with Prescribed Zero Sets},
+companion paper.
+
+\bibitem{CK}
+C.~C.~Chang and H.~J.~Keisler,
+\textit{Model Theory}, 3rd ed.,
+North-Holland, Amsterdam, 1990.
+
+\end{thebibliography}
+
+\end{document}
