@@ -25,9 +25,16 @@
 \newcommand{\mR}{\mathcal{R}}
 \newcommand{\mRR}{\mathcal{R}_{\mathbb{R}}}
 
-\title{The Prime Spectrum of Rings of\\Integer-Coefficient Power Series on the Disk}
-\author{Jon Bannon}\author{David Feldman}
-\date{}
+\title[Prime Spectra of Integer-Coefficient Power Series Rings]{The Prime Spectrum of Rings of\\Integer-Coefficient Power Series on the Disk}
+\author{Jon Bannon}
+\address{Department of Mathematics, Siena College, Loudonville, NY 12211, USA}
+\author{David Victor Feldman}
+\address{Department of Mathematics and Statistics, University of New Hampshire,
+Durham, NH 03824, USA}
+\date{August 2026}
+\subjclass[2020]{Primary 30H50; Secondary 13F25, 13A15, 03C20, 68V20}
+\keywords{Integer-coefficient power series, prime spectrum, maximal ideals,
+ultraproducts, $p$-adic evaluation, unit disk, formal verification}
 
 \begin{document}
 
@@ -173,8 +180,9 @@ statement holds for $\mRR$, with $\Zi^\times$ replaced by $\Z^\times =
 \{\pm 1\}$.
 \end{proposition}
 
-We also use, from \cite{PaperI}, that every $f \in \OD$ factors as $f =
-g\,u$ with $g \in \mR$ and $u \in \OD^\times$, that consequently the
+We also use, from \cite{PaperI}, that every $f \in \OD$ factors as
+$f = g\,u$ with $g \in \mR$ and with $u$ a unit of $\OD$, that
+consequently the
 contraction $\phi \colon \mathrm{MaxSpec}(\OD) \to \mathrm{Spec}(\mR)$,
 $\mathfrak{m} \mapsto \mathfrak{m} \cap \mR$, is injective, and that
 $\mR/\mathfrak{n}_0 \cong \Zi$ (respectively $\mRR/\mathfrak{n}_0 \cong
@@ -344,8 +352,8 @@ particular $a_0 \neq \pm 1$.
 
 \begin{remark}
 \label{rem:padic}
-The primes $Q_p$ are $p$-adic analogues of the point-evaluation ideals
-$P_a$ of Section~\ref{sec:pointeval}: where $P_a$ is the kernel of
+The primes $Q_p$ are $p$-adic analogues of the ideals $P_a$ of
+Section~\ref{sec:pointeval}: where $P_a$ is the kernel of
 archimedean evaluation at a point of $\D$, $Q_p$ is the kernel of
 $p$-adic evaluation at $-p$, a point of $p\Z_p$.  More generally, any
 $\alpha \in p\Z_p$ yields a ring homomorphism $\mRR \to \Z_p$, $f
@@ -709,8 +717,9 @@ no maximal ideal, hence $(f,g) = \mRR$.
 
 \begin{remark}[Sharpness]
 \label{rem:bezoutsharp}
-The coprimality hypothesis cannot be dropped: for any rational prime
-$p$, the pair $f = g = p$ has empty (hence disjoint) zero sets in $\D$,
+Coprimality of the constant terms cannot be dropped.  For any
+rational prime $p$, the pair $f = g = p$ has empty (hence disjoint) zero
+sets in $\D$,
 yet $(f, g) = (p) \subseteq (z,p)$ is proper.  The same pair shows that
 membership of $f$ in a type~(i) maximal ideal does not force $f(0) = 0$:
 only divisibility of $f(0)$ by $p$ follows.
@@ -748,9 +757,9 @@ are open.
 \begin{itemize}
 \item \textbf{Classification of type~(iii) maximal ideals.}  The
   point-evaluation ideals $P_a$ ($a \in \D$) are type~(iii) maximal
-  ideals.  Whether every type~(iii) maximal ideal is of this
-  form---equivalently, whether $\mathfrak{M} \cap \mathfrak{P}_1$
-  consists exactly of the $P_a$---is the central open question.  A
+  ideals.  The central open question is whether every type~(iii)
+  maximal ideal has this form, i.e.\ whether $\mathfrak{M} \cap
+  \mathfrak{P}_1$ consists exactly of the $P_a$.  A
   positive answer yields the full B\'ezout property
   (Theorem~\ref{thm:bezout}) unconditionally.
 
@@ -795,7 +804,7 @@ are open.
 \begin{thebibliography}{9}
 
 \bibitem{PaperI}
-J.~Bannon and D.~Feldman,
+J.~Bannon and D.~V.~Feldman,
 \textit{Integer Coefficients Power Series with Prescribed Zero Sets},
 companion paper.
 

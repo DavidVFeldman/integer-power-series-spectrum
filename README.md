@@ -1,6 +1,8 @@
 # The Prime Spectrum of Rings of Integer-Coefficient Power Series on the Disk
 
-Jon Bannon and David Feldman
+[![CI](https://github.com/DavidVFeldman/integer-power-series-spectrum/actions/workflows/ci.yml/badge.svg)](https://github.com/DavidVFeldman/integer-power-series-spectrum/actions/workflows/ci.yml)
+
+Jon Bannon and David Victor Feldman
 
 This repository contains two companion papers and their complete Lean 4
 formalization.
@@ -61,6 +63,18 @@ of Paper II's final section are not formalized.
 lake exe cache get
 lake build
 ```
+
+## Citing
+
+This repository is the archival artifact of Paper II and its
+formalization (which subsumes Paper I's); cite it via the Zenodo concept
+DOI. Paper I is citable independently through its own venue of record.
+
+## License
+
+The papers (`*.tex`) are released under CC BY 4.0 (`LICENSE`); the Lean
+code (`RequestProject/`, `WeierstrassFormalization/`,
+`SpectrumFormalization/`) under Apache 2.0 (`LICENSE-CODE`).
 
 ## Provenance
 

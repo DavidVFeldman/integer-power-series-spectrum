@@ -9,10 +9,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Escape-hatch census
+      # Source census for constructs that never legitimately appear in
+      # this project, even in documentation. Deliberately does NOT
+      # text-grep for `sorry`/`admit`: doc comments false-positive;
+      # those are caught semantically by the axiom audit below.
+      - name: Source census
         run: |
-          ! grep -rn --include='*.lean' -E '\bsorry\b|\badmit\b|native_decide|^axiom|@\[implemented_by\]' \
+          set -euo pipefail
+          ! grep -rn --include='*.lean' -E '^axiom |native_decide|@\[implemented_by' \
             RequestProject/ WeierstrassFormalization/ SpectrumFormalization/
 
       - name: Build (with Mathlib cache)
         uses: leanprover/lean-action@v1
+
+      # Re-elaborate AxiomCheck.lean and audit the `#print axioms`
+      # transcript: every headline declaration must depend on exactly
+      # propext, Classical.choice, Quot.sound. Any sorryAx or extra
+      # axiom appears here and fails the job.
+      - name: Axiom audit
+        run: |
+          set -euo pipefail
+          export PATH="$HOME/.elan/bin:$PATH"
+          touch SpectrumFormalization/AxiomCheck.lean
+          lake build SpectrumFormalization 2>&1 | tee axioms.log
+          count=$(grep -c 'depends on axioms' axioms.log)
+          echo "declarations audited: $count"
+          [ "$count" -ge 22 ]
+          bad=$(sed -n 's/.*depends on axioms: \[\(.*\)\]/\1/p' axioms.log \
+            | tr ',' '\n' | tr -d ' ' | sort -u \
+            | grep -vE '^(propext|Classical\.choice|Quot\.sound)$' || true)
+          if [ -n "$bad" ]; then
+            echo "NON-STANDARD AXIOMS FOUND:"; echo "$bad"; exit 1
+          fi
+          echo "axiom audit clean"

@@ -1,0 +1,27 @@
+{
+  "title": "The Prime Spectrum of Rings of Integer-Coefficient Power Series on the Disk (with companion paper and complete Lean 4 formalization)",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    {
+      "name": "Bannon, Jon",
+      "affiliation": "Siena College",
+      "orcid": "0000-0002-6347-5447"
+    },
+    {
+      "name": "Feldman, David Victor",
+      "affiliation": "University of New Hampshire",
+      "orcid": "0000-0001-6943-4833"
+    }
+  ],
+  "description": "Two companion papers with complete Lean 4 formalization: the realization of conjugation-invariant divisors on the unit disk by integer-coefficient holomorphic functions (Paper I), and the prime and maximal spectra of the rings Z[[z]] \u2229 O(D) and Z[i][[z]] \u2229 O(D), including the p-adic evaluation primes Q_p with quotient Z_p (Paper II). Every numbered result of both papers is machine-verified; the development contains no sorry, admit, or extra axioms.",
+  "license": "cc-by-4.0",
+  "keywords": [
+    "integer-coefficient power series",
+    "prime spectrum",
+    "Weierstrass products",
+    "p-adic evaluation",
+    "Lean 4",
+    "formal verification"
+  ]
+}

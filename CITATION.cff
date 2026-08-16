@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "The Prime Spectrum of Rings of Integer-Coefficient Power Series on the Disk (with companion paper and complete Lean 4 formalization)"
+authors:
+  - family-names: "Bannon"
+    given-names: "Jon"
+    orcid: "https://orcid.org/0000-0002-6347-5447"
+    affiliation: "Siena College"
+  - family-names: "Feldman"
+    given-names: "David Victor"
+    orcid: "https://orcid.org/0000-0001-6943-4833"
+    affiliation: "University of New Hampshire"
+repository-code: "https://github.com/DavidVFeldman/integer-power-series-spectrum"
+license: CC-BY-4.0
+version: "1.0"
+date-released: "2026-08-15"
