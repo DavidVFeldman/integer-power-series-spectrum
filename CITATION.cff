@@ -12,5 +12,6 @@ authors:
     affiliation: "University of New Hampshire"
 repository-code: "https://github.com/DavidVFeldman/integer-power-series-spectrum"
 license: CC-BY-4.0
-version: "1.0"
-date-released: "2026-08-15"
+doi: 10.5281/zenodo.21959950
+version: "1.1"
+date-released: "2026-08-16"

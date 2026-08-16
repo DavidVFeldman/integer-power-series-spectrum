@@ -1,6 +1,7 @@
 # The Prime Spectrum of Rings of Integer-Coefficient Power Series on the Disk
 
 [![CI](https://github.com/DavidVFeldman/integer-power-series-spectrum/actions/workflows/ci.yml/badge.svg)](https://github.com/DavidVFeldman/integer-power-series-spectrum/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/1335460795.svg)](https://doi.org/10.5281/zenodo.21959950)
 
 Jon Bannon and David Victor Feldman
 
@@ -68,7 +69,7 @@ lake build
 
 This repository is the archival artifact of Paper II and its
 formalization (which subsumes Paper I's); cite it via the Zenodo concept
-DOI. Paper I is citable independently through its own venue of record.
+DOI `10.5281/zenodo.21959950` (resolves to the latest version). Paper I is citable independently through its own venue of record.
 
 ## License
 
